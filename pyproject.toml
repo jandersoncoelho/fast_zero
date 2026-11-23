@@ -49,11 +49,13 @@ extend-exclude = ["*.md", "migrations"]
 poetry_command = ""
 
 [tool.poe.tasks]
-lint = { cmd = "ruff check" }
+lint = [
+  { cmd = "ruff check" },
+  { cmd = "typos" },
+]
 format.sequence = [
   { cmd = "ruff check --fix" },
   { cmd = "ruff format" },
-  { cmd = "typos" }
 ]
 serve = "fastapi dev fast_zero/app.py"
 test.sequence = [
